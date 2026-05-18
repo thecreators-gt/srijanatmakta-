@@ -24,20 +24,20 @@
     </div>
 
     <!-- Navigation Icons -->
-   <div class="nav-card w-44 h-40 flex flex-col items-center justify-center">
-     <a href="shop.html" class="nav-card w-44 h-44 flex flex-col items-center justify-center text-center">
+   <div class="flex justify-center gap-10 mt-12 flex-wrap">
+<a href="shop.html" class="nav-card w-40 h-40 flex flex-col items-center justify-center">
   <i class="fa-solid fa-store text-4xl text-purple-600 mb-3"></i>
-  <p class="font-semibold">Shop</p>
+  <p class="font-semibold text-center">Our Products</p>
 </a>
 
-<a href="whatsnew.html" class="nav-card w-44 h-44 flex flex-col items-center justify-center text-center">
+<a href="whatsnew.html" class="nav-card w-40 h-40 flex flex-col items-center justify-center">
   <i class="fa-solid fa-gift text-4xl text-pink-600 mb-3"></i>
-  <p class="font-semibold">What's New</p>
+  <p class="font-semibold text-center">What's New</p>
 </a>
 
-<a href="#" class="nav-card w-44 h-44 flex flex-col items-center justify-center text-center">
+<a href="#" class="nav-card w-40 h-40 flex flex-col items-center justify-center">
   <i class="fa-solid fa-envelope text-4xl text-teal-600 mb-3"></i>
-  <p class="font-semibold">Contact us</p>
+  <p class="font-semibold text-center">Contact Us</p>
 </a>
     </div>
   </div>
@@ -56,17 +56,13 @@
     const style = document.createElement('style');
     style.innerHTML = `
       .nav-card {
-      border: 2px solid red;
+ 
   background: white;
-  padding: 2rem 1rem;
   border-radius: 20px;
+  padding: 1rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   transition: all 0.3s;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* THIS centers icon + text */
-  justify-content: center;
 
       }
       .nav-card:hover {
