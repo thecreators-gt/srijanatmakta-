@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Srijanatmakta ^-^</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-pink-50 to-purple-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto text-center pt-32 px-6">
+    <!-- Brand Name -->
+    <h1 class="text-6xl md:text-7xl font-bold text-purple-700 mb-4"> Srijanatmakta </h1>
+    <p class="text-2xl text-purple-600 mb-10"> where creative meets curiosity✨🎀 </p>
+
+    <!-- Gratitude Message -->
+    <div class="bg-white rounded-3xl shadow-xl p-10 mb-12">
+      <p class="text-3xl font-light text-gray-700">
+        Thank you for visiting our little corner of creativity!<br>
+        Every piece is handmade with care.
+      </p>
+    </div>
+
+    <!-- Navigation Icons -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+      <a href="shop.html" class="nav-card">
+        <i class="fa-solid fa-store text-4xl text-purple-600 mb-3"></i>
+        <p class="font-semibold">Shop</p>
+      </a>
+      <a href="whatsnew.html" class="nav-card">
+        <i class="fa-solid fa-gift text-4xl text-pink-600 mb-3"></i>
+        <p class="font-semibold">What's New</p>
+      </a>
+      <a href="#" class="nav-card">
+        <i class="fa-solid fa-bookmark text-4xl text-amber-600 mb-3"></i>
+        <p class="font-semibold">Bookmarks</p>
+      </a>
+      <a href="#" class="nav-card">
+        <i class="fa-solid fa-envelope text-4xl text-teal-600 mb-3"></i>
+        <p class="font-semibold">Contact us</p>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Confetti on load
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }, 800);
+
+    // Tailwind custom cards
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .nav-card {
+        background: white;
+        padding: 2rem 1rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        transition: all 0.3s;
+      }
+      .nav-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

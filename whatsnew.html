@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's New in srijanatmakta ^-^</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+
+    body {
+    background: linear-gradient(135deg, #0f0a00, #2c1f14, #1c1408);
+      min-height: 200vh;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(212,175,55,0.1) 0%, transparent 60%);
+      z-index: -1;
+    }
+
+    .title {
+      animation: sparkle 2.5s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      0% { text-shadow: 0 0 15px #d4af37; }
+      100% { text-shadow: 0 0 35px #f5e8c7, 0 0 60px #d4af37; }
+    }
+
+    .card-stack {
+      width: 360px;
+      height: 500px;
+      margin: 40px auto;
+      position: relative;
+      perspective: 3000px;
+    }
+
+    .flashcard {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      cursor: pointer;
+      transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-stack {
+      width: 360px;
+      height: 500px;
+      margin: 40px auto;
+      position: relative;
+      perspective: 3000px;
+    }
+
+    .flashcard {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      box-shadow: 0 30px 60px -15px rgba(0,0,0, 0.9);
+    }
+
+    .flashcard:hover {
+  transform: scale(1.05) !important;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .flashcard.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      border: 6px solid #d4af37;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #1c1408, #3c2a1f);
+      color: #f5e8c7;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #f5e8c7, #e8d9a8);
+      color: #1c1408;
+      transform: rotateY(180deg);
+    }
+
+    /* 🔥 STRONGER GOLD GLOW */
+    .gold-glow {
+      box-shadow: 
+        0 0 15px #d4af37,
+        0 0 30px #d4af37,
+        0 0 50px #d4af37,
+        0 0 70px rgba(212, 175, 55, 0.7),
+        inset 0 0 40px rgba(212, 175, 55, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="max-w-4xl mx-auto px-6 py-12 text-center">
+    <a href="index.html" class="text-[#ff9900] flex items-center gap-2 mb-6 hover:text-amber-200 inline-flex">
+      ← Back to Home
+    </a>
+
+    <h1 class="title text-6xl font-bold text-[#f5e8c7] mb-2 tracking-widest">
+      What's New <span class="text-4xl">✨</span>
+    </h1>
+    <p class="text-[#d4af37] text-lg">Click cards to reveal the magic</p>
+
+    <div class="card-stack" id="card-stack"></div>
+
+    <button onclick="nextCard()" 
+      class="mt-10 border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black px-10 py-4 rounded-3xl font-semibold transition-all text-lg">
+      Next Card →
+    </button>
+  </div>
+
+  <script>
+    const cardsData = [
+      {
+        title: "Summer Floral Magic",
+        subtitle: "New Arrival",
+        content: "Vibrant hand-painted handkerchiefs in yellow, peach & mint.",
+        image: "/attachments/image.png"
+      },
+      {
+        title: "Personalized Treasures",
+        subtitle: "Custom Orders",
+        content: "Hand-paint names, initials or special messages.",
+        image: "https://via.placeholder.com/600x400/3c2a1f/f5e8c7?text=Custom"
+      },
+      {
+        title: "Special Offer",
+        subtitle: "Buy 3 Get 1 Free",
+        content: "Valid till 31st May 2026. Use code: JOY4YOU",
+        image: "https://via.placeholder.com/600x400/3c2a1f/f5e8c7?text=Offer"
+      }
+    ];
+
+    function createCards() {
+      const stack = document.getElementById('card-stack');
+      stack.innerHTML = '';
+
+
+ cardsData.forEach((card, index) => {
+        const cardEl = document.createElement('div');
+        cardEl.className = `flashcard`;
+        cardEl.style.transform = `rotate(${index * 5 - 5}deg) translateY(${index * 18}px)`;
+        cardEl.style.zIndex = cardsData.length - index;
+        cardEl.id = `card-${index}`;
+        cardEl.innerHTML = `
+
+
+          <div class="card-inner">
+            <div class="card-face card-back gold-glow">
+              <i class="fa-solid fa-sparkles text-7xl mb-4 text-[#d4af37]"></i>
+              <h2 class="text-3xl font-bold mb-2">Handcrafted Joy</h2>
+              <p class="text-lg opacity-90">Click to Reveal ✨</p>
+            </div>
+            
+            <div class="card-face card-front gold-glow">
+              <img src="${card.image}" class="w-44 h-44 object-cover rounded-2xl shadow-2xl mb-6 border-2 border-[#d4af37]">
+              <h2 class="text-2xl font-bold">${card.title}</h2>
+              <p class="font-medium">${card.subtitle}</p>
+              <p class="mt-5 text-center text-sm leading-tight">${card.content}</p>
+            </div>
+          </div>
+        `;
+
+        cardEl.addEventListener('click', () => cardEl.classList.toggle('flipped'));
+        stack.appendChild(cardEl);
+      });
+    }
+
+    function nextCard() {
+      const first = cardsData.shift();
+      cardsData.push(first);
+
+      const cards = document.querySelectorAll('.flashcard');
+      if (cards.length > 0) {
+        const top = cards[0];
+        top.style.transition = 'all 0.9s ease';
+        top.style.transform = 'translateY(-450px) scale(0.6) rotate(30deg)';
+        top.style.opacity = '0';
+      }
+
+      setTimeout(createCards, 600);
+    }
+
+    createCards();
+  </script>
+</body>
+</html>

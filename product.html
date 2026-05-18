@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - Handcrafted Joy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .thumbnail { transition: all 0.3s; }
+    .thumbnail.active { border: 3px solid #7c3aed; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Back Button -->
+    <button onclick="history.back()" 
+      class="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium mb-8">
+      <i class="fa-solid fa-arrow-left"></i> Back to Shop
+    </button>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Image Gallery -->
+      <div>
+        <div class="bg-white rounded-3xl overflow-hidden shadow-lg">
+          <img id="main-image" 
+               src="/attachments/image.png" 
+               class="w-full aspect-square object-cover">
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="grid grid-cols-4 gap-4 mt-6" id="thumbnails">
+          <!-- Filled by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="space-y-8">
+        <div>
+          <h1 id="product-name" class="text-4xl font-bold text-gray-800">Hand Painted Yellow Floral Handkerchief</h1>
+          <p id="product-price" class="text-3xl font-semibold text-purple-600 mt-4">₹149</p>
+        </div>
+
+        <!-- Quantity -->
+        <div>
+          <p class="font-medium mb-3">Quantity</p>
+          <div class="flex items-center gap-4">
+            <button onclick="changeQty(-1)" 
+              class="w-12 h-12 border-2 border-gray-300 rounded-2xl text-2xl hover:border-purple-600">-</button>
+            <span id="quantity" class="text-3xl font-semibold w-16 text-center">1</span>
+            <button onclick="changeQty(1)" 
+              class="w-12 h-12 border-2 border-gray-300 rounded-2xl text-2xl hover:border-purple-600">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <button onclick="addToCart()" 
+          class="w-full bg-purple-600 hover:bg-purple-700 text-white py-5 rounded-3xl text-lg font-semibold shadow-lg">
+          Add to Cart • ₹<span id="total-price">149</span>
+        </button>
+
+        <!-- Description -->
+        <div class="pt-6 border-t">
+          <h3 class="font-semibold text-xl mb-4">Description</h3>
+          <p id="product-desc" class="text-gray-600 leading-relaxed text-lg">
+            Beautiful hand-painted yellow cotton handkerchief with intricate blue floral and dotted patterns. 
+            Made with love using high-quality fabric and fabric-safe paints. Soft, absorbent, and perfect for daily use or gifting.
+          </p>
+        </div>
+
+        <!-- Features -->
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="bg-white p-4 rounded-2xl">✅ 100% Cotton</div>
+          <div class="bg-white p-4 rounded-2xl">✅ Hand Painted</div>
+          <div class="bg-white p-4 rounded-2xl">✅ Washable</div>
+          <div class="bg-white p-4 rounded-2xl">✅ Unique Design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const product = {
+      name: "Hand Painted Yellow Floral Handkerchief",
+      price: 149,
+      desc: "Beautiful hand-painted yellow cotton handkerchief with intricate blue floral and dotted patterns. Made with love using high-quality fabric and fabric-safe paints."
+    };
+
+    let qty = 1;
+    const mainImage = document.getElementById('main-image');
+
+    // Multiple views (you can replace these with different angles later)
+    const images = [
+      "/attachments/image.png",                    // Main image
+      "/attachments/image.png",                    // Same image for now
+      "https://via.placeholder.com/600x600?text=Close+Up+Detail",
+      "https://via.placeholder.com/600x600?text=Folded+View"
+    ];
+
+    function loadThumbnails() {
+      const container = document.getElementById('thumbnails');
+      container.innerHTML = images.map((src, index) => `
+        <img src="${src}" 
+             onclick="changeImage(${index})" 
+             class="thumbnail w-full aspect-square object-cover rounded-2xl cursor-pointer border-2 border-transparent hover:border-purple-300 ${index === 0 ? 'active' : ''}">
+      `).join('');
+    }
+
+    function changeImage(index) {
+      mainImage.src = images[index];
+      
+      // Update active thumbnail
+      document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+      });
+    }
+
+    function changeQty(n) {
+      qty = Math.max(1, qty + n);
+      document.getElementById('quantity').textContent = qty;
+      updateTotal();
+    }
+
+    function updateTotal() {
+      document.getElementById('total-price').textContent = product.price * qty;
+    }
+
+    function addToCart() {
+      alert(`${qty} × ${product.name} added to cart!`);
+    }
+
+    // Initialize
+    loadThumbnails();
+    updateTotal();
+  </script>
+</body>
+</html>
